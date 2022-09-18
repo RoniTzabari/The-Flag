@@ -9,11 +9,11 @@ bush_corner_field = []
 def new_field():
     empty_field = []
     for i in range(Consts.FIELD_MATRIX_ROWS):
-        if i >= Consts.FIELD_MATRIX_ROWS - Consts.FLAG_HEIGHT - 1:
+        if i >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
             empty_field.append([
                                    Consts.NO_OBSTACLE] * (
-                                       Consts.FIELD_MATRIX_COLS - Consts.FLAG_WIDTH)
-                               + [Consts.FLAG] * Consts.FLAG_WIDTH)
+                                       Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH)
+                               + [Consts.SHIP] * Consts.SHIP_WIDTH)
         else:
             empty_field.append([Consts.NO_OBSTACLE] * Consts.FIELD_MATRIX_COLS)
 
@@ -22,8 +22,8 @@ def new_field():
 
 def get_loc_tup():
     row = random.randint(0, Consts.FIELD_MATRIX_ROWS)
-    if row < Consts.SOLDIER_HEIGHT:
-        col = random.randint(Consts.SOLDIER_WIDTH,
+    if row < Consts.PLAYER_HEIGHT:
+        col = random.randint(Consts.PLAYER_WIDTH,
                              Consts.FIELD_MATRIX_COLS - Consts.BUSH_WIDTH)
     elif row >= Consts.FIELD_MATRIX_ROWS - Consts.FLAG_HEIGHT - 1:
         col = random.randint(0,
@@ -60,10 +60,10 @@ def if_on_flag():
 
 def if_free_for_bush(row, col):
     check_str = ''
-    for i in range(row, row + Consts.BUSH_HEIGHT):
-        for j in range(col, col + Consts.BUSH_WIDTH):
+    for i in range(row, row + Consts.HEAD_HEIGHT):
+        for j in range(col, col + Consts.HEAD_WIDTH):
             check_str += field[i][j]
-    return check_str == Consts.BUSH * Consts.BUSH_WIDTH * Consts.BUSH_HEIGHT
+    return check_str == Consts.HEAD * Consts.BUSH_WIDTH * Consts.BUSH_HEIGHT
 
 
 def get_bush_field():
