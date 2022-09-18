@@ -31,15 +31,16 @@ RIGHT = 'RIGHT'
 
 
 # IMAGES:
-HEADS = [pygame.image.load(os.path.join("Bin", "head1.png")),
+HEADS_IMG = [pygame.image.load(os.path.join("Bin", "head1.png")),
          pygame.image.load(os.path.join("Bin", "head2.png")),
          pygame.image.load(os.path.join("Bin", "head3.png")),
          pygame.image.load(os.path.join("Bin", "head4.png")),
          pygame.image.load(os.path.join("Bin", "head5.png"))]
-PORTAL = pygame.image.load(os.path.join("Bin", "portal.png"))
-PLAYER = pygame.image.load(os.path.join("Bin", "rickandmorty.png"))
-PLAYER_NIGHT = pygame.image.load(os.path.join("Bin", "rickandmortynight.png"))
-BACKGROUND = pygame.image.load(os.path.join("Bin", "space.jpeg"))
+PORTAL_IMG = pygame.image.load(os.path.join("Bin", "portal.png"))
+PLAYER_IMG = pygame.image.load(os.path.join("Bin", "rickandmorty.png"))
+PLAYER_NIGHT_IMG = pygame.image.load(os.path.join("Bin", "rickandmortynight.png"))
+BACKGROUND_IMG = pygame.image.load(os.path.join("Bin", "space.jpeg"))
+SHIP_IMG = pygame.image.load(os.path.join("Bin", "ship.png"))
 
 
 # SCREEN:
@@ -56,7 +57,7 @@ PORTAL_WIDTH, PORTAL_HEIGHT = INDEX_WIDTH*3, INDEX_HEIGHT*1
 
 BLACK = (0, 0, 0)
 LIGHT_GREEN = (16, 222, 19)
-BORDER = pygame.Rect(WINDOW / 2, 0, 1, WINDOW_HEIGHT)
+# BORDER = pygame.Rect(WINDOW / 2, 0, 1, WINDOW_HEIGHT)
 
 LOSE_MESSAGE = "You Lost!"
 LOSE_FONT_SIZE = int(0.15 * WINDOW_WIDTH)
