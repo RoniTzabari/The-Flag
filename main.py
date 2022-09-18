@@ -5,21 +5,16 @@ import Solider
 import Screen
 import Field
 
+def is_win_or_lose():
+    check = True
+    if MineField.if_on_mine():
+        Screen.draw_lose_message()
+        check = False
+    elif Field.if_on_flag():
+        Screen.draw_win_message()
+        check = False
+    return check
 
-def draw_lose_message():
-    draw_message(Consts.LOSE_MESSAGE, Consts.LOSE_FONT_SIZE,
-                 Consts.LOSE_COLOR, Consts.LOSE_LOCATION)
-
-
-def draw_win_message():
-    draw_message(Consts.WIN_MESSAGE, Consts.WIN_FONT_SIZE,
-                 Consts.WIN_COLOR, Consts.WIN_LOCATION)
-
-
-def draw_message(message, font_size, color, location):
-    font = pygame.font.SysFont(Consts.FONT_NAME, font_size)
-    text_img = font.render(message, True, color)
-    Consts.WINDOW.blit(text_img, location)
 
 def main():
     MineField.generate_mine_field()
@@ -33,6 +28,7 @@ def main():
             if event.type == pygame.QUIT:
                 is_run = False
 
+        Screen.update_starter_screen()
 
         keys_pressed = pygame.key.get_pressed()
         if is_first:
@@ -41,12 +37,8 @@ def main():
         Solider.move_soldier(Screen.movement(keys_pressed, keys_pressed_last_turn))
         keys_pressed_last_turn = keys_pressed
 
-        if MineField.if_on_mine():
-            is_run = False
-        elif Field.if_on_flag():
-            is_run
+        #is_run = is_win_or_lose()
 
-        Screen.update_starter_screen(Field.get_bush_field())
 
 
 
