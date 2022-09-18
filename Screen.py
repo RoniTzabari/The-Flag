@@ -56,7 +56,7 @@ def update_starter_screen():
     field_layout = Field.get_head_field()
 
     # putting heads
-    for i in field_layout():
+    for i in field_layout:
         if i == Consts.HEAD:
             head = pygame.Rect(index_to_pixels(field_layout.index(i)), (Consts.HEAD_WIDTH_IMAGE, Consts.HEAD_HEIGHT_IMAGE))
             render_head(head)
