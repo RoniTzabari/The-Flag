@@ -3,7 +3,7 @@ import Solider
 import random
 
 field = []
-bush_corner_field = []
+head_corner_field = []
 
 
 def new_field():
@@ -24,51 +24,51 @@ def get_loc_tup():
     row = random.randint(0, Consts.FIELD_MATRIX_ROWS)
     if row < Consts.PLAYER_HEIGHT:
         col = random.randint(Consts.PLAYER_WIDTH,
-                             Consts.FIELD_MATRIX_COLS - Consts.BUSH_WIDTH)
-    elif row >= Consts.FIELD_MATRIX_ROWS - Consts.FLAG_HEIGHT - 1:
+                             Consts.FIELD_MATRIX_COLS - Consts.HEAD_WIDTH)
+    elif row >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
         col = random.randint(0,
-                             Consts.FIELD_MATRIX_COLS - Consts.FLAG_WIDTH
-                             - Consts.BUSH_WIDTH)
+                             Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH
+                             - Consts.HEAD_WIDTH)
     else:
         col = random.randint(0,
-                             Consts.FIELD_MATRIX_COLS - Consts.BUSH_WIDTH)
+                             Consts.FIELD_MATRIX_COLS - Consts.HEAD_WIDTH)
     loc_tup = (row, col)
     return loc_tup
 
 
-def generate_bush_field():
-    global field, bush_corner_field
+def generate_head_field():
+    global field, head_corner_field
     field = new_field()
-    bush_corner_field = new_field()
+    head_corner_field = new_field()
 
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = True
         while flag:
             loc = get_loc_tup()
-            flag = if_free_for_bush(loc[0], loc[1])
+            flag = if_free_for_head(loc[0], loc[1])
 
-        bush_corner_field[loc[0]][loc[1]] = Consts.BUSH
-        for j in range(loc[1], loc[1] + Consts.BUSH_WIDTH):
-            for k in range(loc[0], loc[0] + Consts.BUSH_HEIGHT):
-                field[k][j] = Consts.BUSH
+        head_corner_field[loc[0]][loc[1]] = Consts.HEAD
+        for j in range(loc[1], loc[1] + Consts.HEAD_WIDTH):
+            for k in range(loc[0], loc[0] + Consts.HEAD_HEIGHT):
+                field[k][j] = Consts.HEAD
 
 
-def if_on_flag():
+def if_on_ship():
     location = Solider.get_loc()
-    return field[location[0] + 1][location[1]] == Consts.FLAG
+    return field[location[0] + 1][location[1]] == Consts.SHIP
 
 
-def if_free_for_bush(row, col):
+def if_free_for_head(row, col):
     check_str = ''
     for i in range(row, row + Consts.HEAD_HEIGHT):
         for j in range(col, col + Consts.HEAD_WIDTH):
             check_str += field[i][j]
-    return check_str == Consts.HEAD * Consts.BUSH_WIDTH * Consts.BUSH_HEIGHT
+    return check_str == Consts.HEAD * Consts.HEAD_WIDTH * Consts.HEAD_HEIGHT
 
 
-def get_bush_field():
-    return bush_corner_field
+def get_head_field():
+    return head_corner_field
 
 
-generate_bush_field()
-print(get_bush_field())
+generate_head_field()
+print(get_head_field())
