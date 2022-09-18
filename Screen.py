@@ -11,13 +11,13 @@ WINDOW = Consts.WINDOW
 def movement(keys_pressed, keys_pressed_last_turn):
     direction = ""
 
-    if keys_pressed[pygame.K_a] and not keys_pressed_last_turn[pygame.K_a]:  # LEFT
+    if (keys_pressed[pygame.K_a] and not keys_pressed_last_turn[pygame.K_a]) or (keys_pressed[pygame.K_LEFT] and not keys_pressed_last_turn[pygame.K_LEFT]):  # LEFT
         direction = Consts.LEFT
-    elif keys_pressed[pygame.K_d] and not keys_pressed_last_turn[pygame.K_d]:  # RIGHT
+    elif (keys_pressed[pygame.K_d] and not keys_pressed_last_turn[pygame.K_d]) or (keys_pressed[pygame.K_RIGHT] and not keys_pressed_last_turn[pygame.K_RIGHT]):  # RIGHT
         direction = Consts.RIGHT
-    elif keys_pressed[pygame.K_w] and not keys_pressed_last_turn[pygame.K_w]:  # UP
+    elif (keys_pressed[pygame.K_w] and not keys_pressed_last_turn[pygame.K_w]) or (keys_pressed[pygame.K_UP] and not keys_pressed_last_turn[pygame.K_UP]):  # UP
         direction = Consts.UP
-    elif keys_pressed[pygame.K_s] and not keys_pressed_last_turn[pygame.K_s]:  # DOWN
+    elif (keys_pressed[pygame.K_s] and not keys_pressed_last_turn[pygame.K_s]) or (keys_pressed[pygame.K_DOWN] and not keys_pressed_last_turn[pygame.K_DOWN]):  # DOWN
         direction = Consts.DOWN
     elif keys_pressed[pygame.K_RETURN] and not keys_pressed_last_turn[pygame.K_RETURN]:  # ENTER
         create_night_screen()
