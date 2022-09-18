@@ -26,8 +26,8 @@ def generate_portal_field():
     portal_field = Field.new_field()
     portal_corner_field = Field.new_field()
     for i in range(Consts.NUM_OF_OBSTACLES):
-        flag = True
-        while flag:
+        flag = False
+        while not flag:
             loc = get_loc_tup()
             flag = if_free_for_portal(loc[0], loc[1])
 
@@ -62,10 +62,9 @@ def if_on_portal():
 
 def if_free_for_portal(row, col):
     check_str = ''
-    x = col + Consts.PORTAL_WIDTH
-    for i in range(col, x):
+    for i in range(col, col + Consts.PORTAL_WIDTH):
         check_str += portal_field[row][i]
-    return check_str == Consts.HEAD * Consts.PORTAL_WIDTH
+    return check_str == Consts.NO_OBSTACLE * Consts.PORTAL_WIDTH
 
 
 def get_portal_field():

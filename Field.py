@@ -42,8 +42,8 @@ def generate_head_field():
     head_corner_field = new_field()
 
     for i in range(Consts.NUM_OF_OBSTACLES):
-        flag = True
-        while flag:
+        flag = False
+        while not flag:
             loc = get_loc_tup()
             flag = if_free_for_head(loc[0], loc[1])
 
@@ -60,16 +60,10 @@ def if_on_ship():
 
 def if_free_for_head(row, col):
     check_str = ''
-    x = row + Consts.HEAD_HEIGHT
-    y = col + Consts.HEAD_WIDTH
-    z = 0
-    for i in range(row, x):
-        for j in range(col, y):
-            z += 1
-            if z == 7:
-                break
+    for i in range(row, row + Consts.HEAD_HEIGHT):
+        for j in range(col, col + Consts.HEAD_WIDTH):
             check_str += field[i][j]
-    return check_str == Consts.HEAD * Consts.HEAD_WIDTH * Consts.HEAD_HEIGHT
+    return check_str == Consts.NO_OBSTACLE * Consts.HEAD_WIDTH * Consts.HEAD_HEIGHT
 
 
 def get_head_field():
