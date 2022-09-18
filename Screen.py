@@ -53,7 +53,7 @@ def update_starter_screen():
     WINDOW.blit(Consts.BACKGROUND_IMG, (0, 0))
 
     player_index = Solider.get_loc()
-    field_layout = Field.get_bush_field()
+    field_layout = Field.get_head_field()
 
     # putting heads
     for i in field_layout():
