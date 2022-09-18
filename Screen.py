@@ -10,43 +10,53 @@ WINDOW = Consts.WINDOW
 
 def movement(keys_pressed, keys_pressed_last_turn):
     direction = ""
-    if keys_pressed[pygame.K_KP_ENTER] and not keys_pressed_last_turn[pygame.K_KP_ENTER]:
+    if keys_pressed[pygame.K_m] and not keys_pressed_last_turn[pygame.K_m]:  # ENTER
         create_night_screen()
         return ""
     elif keys_pressed[pygame.K_a] and not keys_pressed_last_turn[pygame.K_a]:  # LEFT
         direction = Consts.LEFT
-    elif keys_pressed[pygame.K_d] and keys_pressed_last_turn[pygame.K_d]:  # RIGHT
+    elif keys_pressed[pygame.K_d] and not keys_pressed_last_turn[pygame.K_d]:  # RIGHT
         direction = Consts.RIGHT
-    elif keys_pressed[pygame.K_w] and keys_pressed_last_turn[pygame.K_w]:  # UP
+    elif keys_pressed[pygame.K_w] and not keys_pressed_last_turn[pygame.K_w]:  # UP
         direction = Consts.UP
-    elif keys_pressed[pygame.K_s] and keys_pressed_last_turn[pygame.K_s]:  # DOWN
+    elif keys_pressed[pygame.K_s] and not keys_pressed_last_turn[pygame.K_s]:  # DOWN
         direction = Consts.DOWN
     return direction
 
 
 def create_night_screen():
+    WINDOW.fill(Consts.BLACK)
+
+    player_index = Solider.get_loc()
+
     # create vertical lines
-    for i in range(1, 50):
+    for i in range(1, Consts.FIELD_MATRIX_COLS):
         rect = pygame.Rect((i * Consts.INDEX_WIDTH, 0), (1, Consts.WINDOW_HEIGHT))
         pygame.draw.rect(WINDOW, Consts.LIGHT_GREEN, rect)
-    # create horizontal lines
-    for i in range(1, 25):
-        rect = pygame.Rect((0, i * Consts.INDEX_WIDTH), (1, Consts.WINDOW_HEIGHT))
+    # create horizontal linesa
+    for i in range(1, Consts.FIELD_MATRIX_ROWS):
+        rect = pygame.Rect((0, i * Consts.INDEX_WIDTH), (Consts.WINDOW_WIDTH, 1))
         pygame.draw.rect(WINDOW, Consts.LIGHT_GREEN, rect)
 
     # putting portals
     mine_fiels = MineField.get_portal_field()
-    for i in range(len(mine_fiels)):
-        if i == Consts.PORTAL_IMG:
-            portal = pygame.Rect(index_to_pixels(mine_fiels.index(i)), (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
-            render_portal(portal)
+    for i in range(Consts.FIELD_MATRIX_ROWS):
+        for j in range(Consts.FIELD_MATRIX_COLS):
+            if mine_fiels[i][j] == Consts.PORTAL:
+                portal_data = pygame.transform.scale(Consts.PORTAL_IMG, (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
+                portal = pygame.Rect(index_to_pixels((j, i)), (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
+                render_portal(portal, portal_data)
+
+    player_data = pygame.transform.scale(Consts.PLAYER_NIGHT_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    WINDOW.blit(player_data, (player.x, player.y))
 
     pygame.display.update()
     pygame.time.wait(1000)
 
 
 def index_to_pixels(index):
-    return (index[0] * Consts.INDEX_WIDTH, index[1] * Consts.INDEX_HEIGHT)
+    return (index[0] * Consts.INDEX_HEIGHT, index[1] * Consts.INDEX_WIDTH)
 
 
 def update_starter_screen():
@@ -56,30 +66,36 @@ def update_starter_screen():
     field_layout = Field.get_head_field()
 
     # putting heads
-    for i in field_layout:
-        if i == Consts.HEAD:
-            head = pygame.Rect(index_to_pixels(field_layout.index(i)), (Consts.HEAD_WIDTH_IMAGE, Consts.HEAD_HEIGHT_IMAGE))
-            render_head(head)
-        if i == Consts.SHIP:
-            ship = pygame.Rect(index_to_pixels(Consts.SHIP_LOCATION), (Consts.SHIP_WIDTH, Consts.SHIP_HEIGHT))
-            WINDOW.blit(Consts.SHIP_IMG, (ship.x, ship.y))
+    for i in range(Consts.FIELD_MATRIX_ROWS):
+        for j in range(Consts.FIELD_MATRIX_COLS):
+            if field_layout[i][j] == Consts.HEAD:
+                head_data = pygame.transform.scale(get_random_head(),
+                                                   (Consts.HEAD_WIDTH_IMAGE, Consts.HEAD_HEIGHT_IMAGE))
+                head = pygame.Rect(index_to_pixels((j, i)),
+                                   (Consts.HEAD_WIDTH_IMAGE, Consts.HEAD_HEIGHT_IMAGE))
+                render_head(head, head_data)
 
+    ship_data = pygame.transform.scale(Consts.SHIP_IMAGE, (Consts.SHIP_WIDTH_IMAGE, Consts.SHIP_HEIGHT_IMAGE))
+    ship = pygame.Rect(index_to_pixels(Consts.SHIP_LOCATION), (Consts.SHIP_WIDTH_IMAGE, Consts.SHIP_HEIGHT_IMAGE))
+    WINDOW.blit(ship_data, (ship.x, ship.y))
+
+    player_data = pygame.transform.scale(Consts.PLAYER_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
-    WINDOW.blit(Consts.PLAYER_IMG, (player.x, player.y))
+    WINDOW.blit(player_data, (player.x, player.y))
 
     pygame.display.update()
 
 
-def render_portal(portal):
-    WINDOW.blit(Consts.PORTAL, (portal.x, portal.y))
+def render_portal(portal, portal_data):
+    WINDOW.blit(portal_data, (portal.x, portal.y))
 
 
-def render_head(head):
-    WINDOW.blit(get_random_head(), (head.x, head.y))
+def render_head(head, data):
+    WINDOW.blit(data, (head.x, head.y))
 
 
 def get_random_head():
-    index = random.randint(0, 6)
+    index = random.randint(0, 5)
     return Consts.HEADS_IMG[index]
 
 
@@ -95,6 +111,9 @@ def draw_win_message():
 
 
 def draw_message(message, font_size, color, location):
+    print(message)
+    """
     font = pygame.font.SysFont(Consts.FONT_NAME, font_size)
     text_img = font.render(message, True, color)
     Consts.WINDOW.blit(text_img, location)
+    """
