@@ -35,10 +35,10 @@ def create_night_screen():
         pygame.draw.rect(WINDOW, Consts.LIGHT_GREEN, rect)
 
     # putting portals
-    mine_fiels = MineField.get_mine_field()
+    mine_fiels = MineField.get_portal_field()
     for i in range(len(mine_fiels)):
         if i == Consts.PORTAL_IMG:
-            portal = pygame.Rect(index_to_pixels(mine_fiels.index(i)), (Consts.PORTAL_WIDTH, Consts.PORTAL_HEIGHT))
+            portal = pygame.Rect(index_to_pixels(mine_fiels.index(i)), (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
             render_portal(portal)
 
     pygame.display.update()
@@ -58,7 +58,7 @@ def update_starter_screen():
     # putting heads
     for i in field_layout():
         if i == Consts.HEAD:
-            head = pygame.Rect(index_to_pixels(field_layout.index(i)), (Consts.HEAD_WIDTH, Consts.HEAD_HEIGHT))
+            head = pygame.Rect(index_to_pixels(field_layout.index(i)), (Consts.HEAD_WIDTH_IMAGE, Consts.HEAD_HEIGHT_IMAGE))
             render_head(head)
         if i == Consts.SHIP:
             ship = pygame.Rect(index_to_pixels(Consts.SHIP_LOCATION), (Consts.SHIP_WIDTH, Consts.SHIP_HEIGHT))
