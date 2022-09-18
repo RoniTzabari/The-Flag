@@ -1,5 +1,3 @@
-import MineField
-import Field
 import Consts
 
 soldier_loc = (0, 0)

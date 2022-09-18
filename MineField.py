@@ -7,24 +7,24 @@ portal_field = []
 portal_corner_field = []
 
 
-def new_field():
-    empty_field = []
-    for i in range(Consts.FIELD_MATRIX_ROWS):
-        if i >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
-            empty_field.append([
-                                   Consts.NO_OBSTACLE] * (
-                                       Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH)
-                               + [Consts.SHIP] * Consts.SHIP_WIDTH)
-        else:
-            empty_field.append([Consts.NO_OBSTACLE] * Consts.FIELD_MATRIX_COLS)
-
-    return empty_field
+# def new_field():
+#     empty_field = []
+#     for i in range(Consts.FIELD_MATRIX_ROWS):
+#         if i >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
+#             empty_field.append([
+#                                    Consts.NO_OBSTACLE] * (
+#                                        Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH)
+#                                + [Consts.SHIP] * Consts.SHIP_WIDTH)
+#         else:
+#             empty_field.append([Consts.NO_OBSTACLE] * Consts.FIELD_MATRIX_COLS)
+#
+#     return empty_field
 
 
 def generate_portal_field():
     global portal_field, portal_corner_field
-    portal_field = new_field()
-    portal_corner_field = new_field()
+    portal_field = Field.new_field()
+    portal_corner_field = Field.new_field()
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = True
         while flag:
@@ -71,3 +71,5 @@ def if_free_for_portal(row, col):
 def get_portal_field():
     return portal_corner_field
 
+generate_portal_field()
+print(portal_corner_field)
