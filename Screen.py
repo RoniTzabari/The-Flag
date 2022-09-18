@@ -10,10 +10,8 @@ WINDOW = Consts.WINDOW
 
 def movement(keys_pressed, keys_pressed_last_turn):
     direction = ""
-    if keys_pressed[pygame.K_m] and not keys_pressed_last_turn[pygame.K_m]:  # ENTER
-        create_night_screen()
-        return ""
-    elif keys_pressed[pygame.K_a] and not keys_pressed_last_turn[pygame.K_a]:  # LEFT
+
+    if keys_pressed[pygame.K_a] and not keys_pressed_last_turn[pygame.K_a]:  # LEFT
         direction = Consts.LEFT
     elif keys_pressed[pygame.K_d] and not keys_pressed_last_turn[pygame.K_d]:  # RIGHT
         direction = Consts.RIGHT
@@ -21,6 +19,9 @@ def movement(keys_pressed, keys_pressed_last_turn):
         direction = Consts.UP
     elif keys_pressed[pygame.K_s] and not keys_pressed_last_turn[pygame.K_s]:  # DOWN
         direction = Consts.DOWN
+    elif keys_pressed[pygame.K_RETURN] and not keys_pressed_last_turn[pygame.K_RETURN]:  # ENTER
+        create_night_screen()
+        return ""
     return direction
 
 
@@ -111,9 +112,6 @@ def draw_win_message():
 
 
 def draw_message(message, font_size, color, location):
-    print(message)
-    """
-    font = pygame.font.SysFont(Consts.FONT_NAME, font_size)
+    font = pygame.font.SysFont(None, font_size)
     text_img = font.render(message, True, color)
     Consts.WINDOW.blit(text_img, location)
-    """
