@@ -1,4 +1,5 @@
 import pygame
+import os
 
 FIELD_MATRIX_ROWS = 25
 FIELD_MATRIX_COLS = 50
@@ -29,7 +30,19 @@ LEFT = 'LEFT'
 RIGHT = 'RIGHT'
 
 
-# SCREEN
+# IMAGES:
+HEADS = [pygame.image.load(os.path.join("Bin", "head1.png")),
+         pygame.image.load(os.path.join("Bin", "head2.png")),
+         pygame.image.load(os.path.join("Bin", "head3.png")),
+         pygame.image.load(os.path.join("Bin", "head4.png")),
+         pygame.image.load(os.path.join("Bin", "head5.png"))]
+PORTAL = pygame.image.load(os.path.join("Bin", "portal.png"))
+PLAYER = pygame.image.load(os.path.join("Bin", "rickandmorty.png"))
+PLAYER_NIGHT = pygame.image.load(os.path.join("Bin", "rickandmortynight.png"))
+BACKGROUND = pygame.image.load(os.path.join("Bin", "space.jpeg"))
+
+
+# SCREEN:
 FPS = 60
 WINDOW_WIDTH, WINDOW_HEIGHT = 1000, 500
 WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
