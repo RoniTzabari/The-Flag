@@ -42,6 +42,8 @@ PLAYER_IMG = pygame.image.load(os.path.join("Bin", "rickandmorty.png"))
 PLAYER_NIGHT_IMG = pygame.image.load(os.path.join("Bin", "rickandmortynight.png"))
 BACKGROUND_IMG = pygame.image.load(os.path.join("Bin", "space.jpeg"))
 SHIP_IMAGE = pygame.image.load(os.path.join("Bin", "ship.png"))
+LOSE_IMAGE = pygame.image.load(os.path.join("Bin", "lose.png"))
+WIN_IMAGE = pygame.image.load(os.path.join("Bin", "win.jpg"))
 
 
 # SCREEN:
@@ -57,18 +59,19 @@ HEAD_WIDTH_IMAGE, HEAD_HEIGHT_IMAGE = INDEX_WIDTH*2, INDEX_HEIGHT*3
 PORTAL_WIDTH_IMAGE, PORTAL_HEIGHT_IMAGE = INDEX_WIDTH*3, INDEX_HEIGHT*1
 SHIP_WIDTH_IMAGE, SHIP_HEIGHT_IMAGE = SHIP_WIDTH * INDEX_WIDTH, SHIP_HEIGHT * INDEX_HEIGHT
 
+WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 LIGHT_GREEN = (16, 222, 19)
 # BORDER = pygame.Rect(WINDOW / 2, 0, 1, WINDOW_HEIGHT)
 
-FONT_NAME = "OpenSans-Italic.ttf"
+FONT_NAME = "Calibri"
 LOSE_MESSAGE = "You Lost!"
 LOSE_FONT_SIZE = 100  # int(0.15 * WINDOW_WIDTH)
-LOSE_COLOR = BLACK
+LOSE_COLOR = WHITE
 LOSE_LOCATION = \
-    (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (LOSE_FONT_SIZE / 2))
+    (0.4 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (LOSE_FONT_SIZE / 2))
 WIN_MESSAGE = "You Won!"
 WIN_FONT_SIZE = LOSE_FONT_SIZE
-WIN_COLOR = (89, 89, 89)
+WIN_COLOR = WHITE
 WIN_LOCATION = \
-    (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (WIN_FONT_SIZE / 2))
+    (0.3 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (WIN_FONT_SIZE / 2))

@@ -102,9 +102,8 @@ def get_random_head():
 
 # WIN LOSE
 def draw_lose_message():
-    # (Consts.LOSE_MESSAGE, Consts.LOSE_FONT_SIZE,
     draw_message(Consts.LOSE_MESSAGE, Consts.LOSE_FONT_SIZE,
-                 Consts.LOSE_COLOR, [600, 200])
+                 Consts.LOSE_COLOR, Consts.LOSE_LOCATION)
 
 
 def draw_win_message():
@@ -113,6 +112,21 @@ def draw_win_message():
 
 
 def draw_message(message, font_size, color, location):
-    font = pygame.font.SysFont("Calibri", font_size)
+    pygame.font.init()
+
+    WINDOW.blit(Consts.BACKGROUND_IMG, (0, 0))
+
+    if message == "You Lost!":
+        img_data = pygame.transform.scale(Consts.LOSE_IMAGE, (315, 270))
+        img = pygame.Rect((50, 100), (315, 270))
+        WINDOW.blit(img_data, (img.x, img.y))
+    elif message == "You Won!":
+        img_data = pygame.transform.scale(Consts.WIN_IMAGE, (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT))
+        img = pygame.Rect((0, 0), (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT))
+        WINDOW.blit(img_data, (0, 0))
+
+    font = pygame.font.SysFont(Consts.FONT_NAME, font_size)
     text_img = font.render(message, True, color)
-    Consts.WINDOW.blit(text_img, location)
+    WINDOW.blit(text_img, location)
+
+    pygame.display.update()
