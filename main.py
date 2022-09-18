@@ -39,11 +39,7 @@ def main():
 
         is_run = is_win_or_lose()
 
-
-    is_run = True
-    while is_run:
-        for event in pygame.event.get():
-            is_run = event.type != pygame.QUIT
+    pygame.time.wait(3000)
     pygame.quit()
 
 
