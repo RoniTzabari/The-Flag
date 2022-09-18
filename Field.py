@@ -21,9 +21,9 @@ def new_field():
 
 
 def get_loc_tup():
-    row = random.randint(0, Consts.FIELD_MATRIX_ROWS)
-    if row < Consts.PLAYER_HEIGHT:
-        col = random.randint(Consts.PLAYER_WIDTH,
+    row = random.randint(0, Consts.FIELD_MATRIX_ROWS - Consts.HEAD_HEIGHT)
+    if row < Consts.SOLDIER_HEIGHT:
+        col = random.randint(Consts.SOLDIER_WIDTH,
                              Consts.FIELD_MATRIX_COLS - Consts.HEAD_WIDTH)
     elif row >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
         col = random.randint(0,
@@ -60,8 +60,14 @@ def if_on_ship():
 
 def if_free_for_head(row, col):
     check_str = ''
-    for i in range(row, row + Consts.HEAD_HEIGHT):
-        for j in range(col, col + Consts.HEAD_WIDTH):
+    x = row + Consts.HEAD_HEIGHT
+    y = col + Consts.HEAD_WIDTH
+    z = 0
+    for i in range(row, x):
+        for j in range(col, y):
+            z += 1
+            if z == 7:
+                break
             check_str += field[i][j]
     return check_str == Consts.HEAD * Consts.HEAD_WIDTH * Consts.HEAD_HEIGHT
 

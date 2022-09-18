@@ -14,12 +14,28 @@ def generate_portal_field():
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = True
         while flag:
-            loc = Field.get_loc_tup()
+            loc = get_loc_tup()
             flag = if_free_for_portal(loc[0], loc[1])
 
         portal_corner_field[loc[0]][loc[1]] = Consts.PORTAL
         for j in range(loc[1], loc[1] + Consts.PORTAL_WIDTH):
             portal_field[loc[0]][j] = Consts.PORTAL
+
+
+def get_loc_tup():
+    row = random.randint(0, Consts.FIELD_MATRIX_ROWS - 1)
+    if row < Consts.SOLDIER_HEIGHT:
+        col = random.randint(Consts.SOLDIER_WIDTH,
+                             Consts.FIELD_MATRIX_COLS - Consts.PORTAL_WIDTH)
+    elif row >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
+        col = random.randint(0,
+                             Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH
+                             - Consts.PORTAL_WIDTH)
+    else:
+        col = random.randint(0,
+                             Consts.FIELD_MATRIX_COLS - Consts.PORTAL_WIDTH)
+    loc_tup = (row, col)
+    return loc_tup
 
 
 def if_on_portal():
