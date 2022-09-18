@@ -1,6 +1,7 @@
 import Consts
 import Solider
 import random
+import MineField
 
 field = []
 head_corner_field = []

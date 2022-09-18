@@ -48,7 +48,8 @@ def if_on_portal():
 
 def if_free_for_portal(row, col):
     check_str = ''
-    for i in range(row, row + Consts.PORTAL_WIDTH):
+    x = row + Consts.PORTAL_WIDTH
+    for i in range(row, x):
         check_str += portal_field[i][col]
     return check_str == Consts.HEAD * Consts.PORTAL_WIDTH
 
