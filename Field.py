@@ -75,7 +75,3 @@ def if_free_for_head(row, col):
 
 def get_head_field():
     return head_corner_field
-
-
-generate_head_field()
-print(get_head_field())
