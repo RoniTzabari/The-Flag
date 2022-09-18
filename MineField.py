@@ -32,7 +32,7 @@ def if_on_mine():
 def if_free_for_mine(row, col):
     check_str = ''
     for i in range(row, row + Consts.MINE_WIDTH):
-        check_str += mine_field[i][j]
+        check_str += mine_field[i][col]
     return check_str == Consts.BUSH * Consts.MINE_WIDTH
 
 
