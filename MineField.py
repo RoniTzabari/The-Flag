@@ -70,6 +70,3 @@ def if_free_for_portal(row, col):
 
 def get_portal_field():
     return portal_corner_field
-
-generate_portal_field()
-print(portal_corner_field)
