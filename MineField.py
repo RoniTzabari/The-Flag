@@ -54,8 +54,8 @@ def get_loc_tup():
 
 def if_on_portal():
     location = Solider.get_loc()
-    right_leg = (location[0] - 3, location[1])
-    left_leg = (location[0] - 3, location[1] + 1)
+    right_leg = (location[1] + 3, location[0])
+    left_leg = (location[1] + 3, location[0] + 1)
     return (portal_field[right_leg[0]][right_leg[1]] == Consts.PORTAL or
             portal_field[left_leg[0]][left_leg[1]] == Consts.PORTAL)
 
