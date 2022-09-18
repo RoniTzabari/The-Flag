@@ -4,10 +4,11 @@ import Solider
 import random
 
 mine_field = []
+mine_corner_field = []
 
 
 def generate_mine_field():
-    global mine_field
+    global mine_field, mine_corner_field
     mine_field = Field.new_field()
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = True
@@ -15,6 +16,7 @@ def generate_mine_field():
             loc = Field.get_loc_tup()
             flag = if_free_for_mine(loc[0], loc[1])
 
+        mine_corner_field[loc[0]][loc[1]] = Consts.MINE
         for j in range(loc[1], loc[1] + Consts.MINE_WIDTH):
             mine_field[loc[0]][j] = Consts.MINE
 
@@ -30,5 +32,9 @@ def if_on_mine():
 def if_free_for_mine(row, col):
     check_str = ''
     for i in range(row, row + Consts.MINE_WIDTH):
-        check_str += mine_field[i, j]
+        check_str += mine_field[i][j]
     return check_str == Consts.BUSH * Consts.MINE_WIDTH
+
+
+def get_mine_field():
+    return mine_corner_field

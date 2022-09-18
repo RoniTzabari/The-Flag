@@ -3,6 +3,7 @@ import Solider
 import random
 
 field = []
+bush_corner_field = []
 
 
 def new_field():
@@ -36,8 +37,9 @@ def get_loc_tup():
 
 
 def generate_bush_field():
-    global field
+    global field, bush_corner_field
     field = new_field()
+    bush_corner_field = new_field()
 
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = True
@@ -45,6 +47,7 @@ def generate_bush_field():
             loc = get_loc_tup()
             flag = if_free_for_bush(loc[0], loc[1])
 
+        bush_corner_field[loc[0]][loc[1]] = Consts.BUSH
         for j in range(loc[1], loc[1] + Consts.BUSH_WIDTH):
             for k in range(loc[0], loc[0] + Consts.BUSH_HEIGHT):
                 field[k][j] = Consts.BUSH
@@ -59,5 +62,13 @@ def if_free_for_bush(row, col):
     check_str = ''
     for i in range(row, row + Consts.BUSH_HEIGHT):
         for j in range(col, col + Consts.BUSH_WIDTH):
-            check_str += field[i, j]
+            check_str += field[i][j]
     return check_str == Consts.BUSH * Consts.BUSH_WIDTH * Consts.BUSH_HEIGHT
+
+
+def get_bush_field():
+    return bush_corner_field
+
+
+generate_bush_field()
+print(get_bush_field())
