@@ -5,15 +5,15 @@ import Solider
 import Screen
 import Field
 
-def is_win_or_lose():
-    check = True
-    if MineField.if_on_mine():
-        Screen.draw_lose_message()
-        check = False
-    elif Field.if_on_flag():
-        Screen.draw_win_message()
-        check = False
-    return check
+# def is_win_or_lose():
+#     check = True
+#     if MineField.if_on_mine():
+#         Screen.draw_lose_message()
+#         check = False
+#     elif Field.if_on_flag():
+#         Screen.draw_win_message()
+#         check = False
+#     return check
 
 
 def main():
