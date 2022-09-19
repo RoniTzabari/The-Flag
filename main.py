@@ -58,12 +58,12 @@ def main():
                 is_run = False
             if event.type == pygame.KEYDOWN:
                 keys_pressed = pygame.key.get_pressed()
-                pressed_num = which_number_is_pressed()
+                pressed_num = which_number_is_pressed(keys_pressed)
                 if pressed_num != 0:
                     start_time = time.time()
             if event.type == pygame.KEYUP:
                 keys_pressed = pygame.key.get_pressed()
-                pressed_num = which_number_is_pressed()
+                pressed_num = which_number_is_pressed(keys_pressed)
                 if pressed_num != 0:
                     press_duration = time.time() - start_time
                     check_if_save_or_open(press_duration)
