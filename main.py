@@ -1,5 +1,6 @@
 import pygame
 import Consts
+import Guard
 import MineField
 import Solider
 import Screen
@@ -7,9 +8,10 @@ import Field
 import time
 import Database
 
+
 def is_win_or_lose():
     check = True
-    if MineField.if_on_portal():
+    if MineField.if_on_portal() or Guard.is_caught():
         Screen.draw_lose_message()
         check = False
     elif Field.if_on_ship():
@@ -50,6 +52,8 @@ def main():
             is_first = False
         Solider.move_soldier(Screen.movement(keys_pressed, keys_pressed_last_turn))
         keys_pressed_last_turn = keys_pressed
+
+        Guard.move_guard()
 
         is_run = is_win_or_lose()
 
