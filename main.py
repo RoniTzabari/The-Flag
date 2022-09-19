@@ -71,9 +71,6 @@ def main():
         Screen.update_starter_screen()
 
         keys_pressed = pygame.key.get_pressed()
-        pressed_num = which_number_is_pressed()
-        if pressed_num != 0:
-            check_if_save_or_open(pressed_num)
         if is_first:
             keys_pressed_last_turn = keys_pressed
             is_first = False
