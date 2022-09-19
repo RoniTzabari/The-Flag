@@ -44,13 +44,13 @@ def check_if_save_or_open(event):
         if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
             # key 'a'
             start_time = time.time()
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
-                press_duration = time.time() - start_time
-                if press_duration <= 1.0:
-                    print("save game")
-                else:
-                    print("open game")
+    if event.type == pygame.KEYUP:
+        if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
+            press_duration = time.time() - start_time
+            if press_duration <= 1.0:
+                print("save game")
+            else:
+                print("open game")
 
 
 def main():
@@ -64,7 +64,18 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_run = False
-            check_if_save_or_open(event)
+            if event.type == pygame.KEYDOWN:
+                # detect key 'a'
+                if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
+                    # key 'a'
+                    start_time = time.time()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
+                    press_duration = time.time() - start_time
+                    if press_duration <= 1.0:
+                        print("save game")
+                    else:
+                        print("open game")
 
         Screen.update_starter_screen()
 
