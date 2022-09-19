@@ -77,6 +77,6 @@ def set_head_field(heads):
         for j in range(len(head_corner_field[i])):
             if head_corner_field[i][j] == Consts.HEAD:
                 loc = (i, j)
-                for k in range(loc[1], loc[1] + Consts.HEAD_WIDTH):
-                    for m in range(loc[0], loc[0] + Consts.HEAD_HEIGHT):
+                for k in range(loc[0], loc[0] + Consts.HEAD_WIDTH):
+                    for m in range(loc[1], loc[1] + Consts.HEAD_HEIGHT):
                         field[k][j] = Consts.HEAD

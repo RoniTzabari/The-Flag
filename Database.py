@@ -3,18 +3,33 @@ import MineField
 import Field
 import Solider
 import os
+import ast
 
 
 DF = pd.DataFrame()
 CSV_PATH = "GameData.csv"
 
 
+def string_to_matrix(string):
+    string = string[1:len(string) - 2]
+    list = string.split('],')
+    list = [x[1::] for x in list]
+    final = []
+    sub_list = []
+    for string in list:
+        sub_list = string.split("'")
+        sub_list = [x for x in sub_list if sub_list.index(x) % 2 !=0]
+        final.append(sub_list)
+    return final
+
+
 # Read file
 def change_game_state(index):
-    data = pd.read_csv(CSV_PATH, header=0)
-    Field.set_head_field(data.Heads[index])
-    MineField.set_portal_field(data.Portals[index])
-    Solider.set_loc(data.Player[index])
+    data = pd.read_csv(CSV_PATH)
+    Field.set_head_field(string_to_matrix(data.Heads[index]))
+    MineField.set_portal_field(string_to_matrix(data.Portals[index]))
+    str_list = data.Player[index][1:len(data.Player[index]) - 1].split(', ')
+    Solider.set_loc([int(str_list[0]), int(str_list[1])])
 
 
 # Write to file
