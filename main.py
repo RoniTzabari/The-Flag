@@ -15,10 +15,33 @@ def is_win_or_lose():
         check = False
     return check
 
-def check_if_save_or_open():
+def which_number_is_pressed(keys_pressed):
+    pressed_num = 0
+    if keys_pressed[pygame.K_1]:
+        pressed_num = pygame.K_1
+    elif keys_pressed[pygame.K_2]:
+        pressed_num = pygame.K_2
+    elif keys_pressed[pygame.K_3]:
+        pressed_num = pygame.K_3
+    elif keys_pressed[pygame.K_4]:
+        pressed_num = pygame.K_4
+    elif keys_pressed[pygame.K_5]:
+        pressed_num = pygame.K_5
+    elif keys_pressed[pygame.K_6]:
+        pressed_num = pygame.K_6
+    elif keys_pressed[pygame.K_7]:
+        pressed_num = pygame.K_7
+    elif keys_pressed[pygame.K_8]:
+        pressed_num = pygame.K_8
+    elif keys_pressed[pygame.K_9]:
+        pressed_num = pygame.K_9
+    return pressed_num
+
+
+def check_if_save_or_open(pressed_num):
     ticks=pygame.time.get_ticks()
     keys_pressed = pygame.key.get_pressed()
-    while(keys_pressed[pygame.K_1] or keys_pressed[pygame.K_2] or keys_pressed[pygame.K_3] or keys_pressed[pygame.K_4] or keys_pressed[pygame.K_5] or keys_pressed[pygame.K_6] or keys_pressed[pygame.K_7] or keys_pressed[pygame.K_8] or keys_pressed[pygame.K_9]):
+    while keys_pressed[pressed_num]:
         keys_pressed = pygame.key.get_pressed()
     if (pygame.time.get_ticks() - ticks) <= 1000:
         print("save game")
@@ -41,8 +64,9 @@ def main():
         Screen.update_starter_screen()
 
         keys_pressed = pygame.key.get_pressed()
-        if (keys_pressed[pygame.K_1] or keys_pressed[pygame.K_2] or keys_pressed[pygame.K_3] or keys_pressed[pygame.K_4] or keys_pressed[pygame.K_5] or keys_pressed[pygame.K_6] or keys_pressed[pygame.K_7] or keys_pressed[pygame.K_8] or keys_pressed[pygame.K_9]):
-            check_if_save_or_open()
+        pressed_num = which_number_is_pressed()
+        if pressed_num != 0:
+            check_if_save_or_open(pressed_num)
         if is_first:
             keys_pressed_last_turn = keys_pressed
             is_first = False
