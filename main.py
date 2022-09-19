@@ -38,11 +38,19 @@ def which_number_is_pressed(keys_pressed):
         pressed_num = pygame.K_9
     return pressed_num
 
-def check_if_save_or_open(press_duration):
-    if press_duration <= 1.0:
-        print("save game")
-    else:
-        print("open game")
+def check_if_save_or_open(event):
+    if event.type == pygame.KEYDOWN:
+        # detect key 'a'
+        if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
+            # key 'a'
+            start_time = time.time()
+    if event.type == pygame.KEYUP:
+        if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
+            press_duration = time.time() - start_time
+            if press_duration <= 1.0:
+                print("save game")
+            else:
+                print("open game")
 
 
 def main():
@@ -56,17 +64,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_run = False
-            if event.type == pygame.KEYDOWN:
-                keys_pressed = pygame.key.get_pressed()
-                pressed_num = which_number_is_pressed(keys_pressed)
-                if pressed_num != 0:
-                    start_time = time.time()
-            if event.type == pygame.KEYUP:
-                keys_pressed = pygame.key.get_pressed()
-                pressed_num = which_number_is_pressed(keys_pressed)
-                if pressed_num != 0:
-                    press_duration = time.time() - start_time
-                    check_if_save_or_open(press_duration)
+            check_if_save_or_open(event)
 
         Screen.update_starter_screen()
 
