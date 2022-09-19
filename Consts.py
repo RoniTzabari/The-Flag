@@ -10,6 +10,9 @@ NO_OBSTACLE = 'EMPTY'
 PORTAL = 'PORTAL'
 PORTAL_WIDTH = 3
 
+TELEPORTER = 'TELEPORTER'
+TELEPORTER_WIDTH = PORTAL_WIDTH
+
 HEAD = 'HEAD'
 HEAD_WIDTH = 2
 HEAD_HEIGHT = 3
@@ -44,6 +47,8 @@ BACKGROUND_IMG = pygame.image.load(os.path.join("Bin", "space.jpeg"))
 SHIP_IMAGE = pygame.image.load(os.path.join("Bin", "ship.png"))
 LOSE_IMAGE = pygame.image.load(os.path.join("Bin", "lose.png"))
 WIN_IMAGE = pygame.image.load(os.path.join("Bin", "win.jpg"))
+GARD_IMG = pygame.image.load(os.path.join("Bin", "picklerick.png"))
+TELEPORTER_IMG = pygame.image.load(os.path.join("Bin", "portal2.png"))
 
 
 # SCREEN:
