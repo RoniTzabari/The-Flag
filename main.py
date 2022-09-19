@@ -15,6 +15,16 @@ def is_win_or_lose():
         check = False
     return check
 
+def check_if_save_or_open():
+    ticks=pygame.time.get_ticks()
+    keys_pressed = pygame.key.get_pressed()
+    while(keys_pressed[pygame.K_1] or keys_pressed[pygame.K_2] or keys_pressed[pygame.K_3] or keys_pressed[pygame.K_4] or keys_pressed[pygame.K_5] or keys_pressed[pygame.K_6] or keys_pressed[pygame.K_7] or keys_pressed[pygame.K_8] or keys_pressed[pygame.K_9]):
+        keys_pressed = pygame.key.get_pressed()
+    if (pygame.time.get_ticks() - ticks) <= 1000:
+        print("save game")
+    else:
+        print("open game")
+
 
 def main():
     MineField.generate_portal_field()
@@ -29,9 +39,10 @@ def main():
                 is_run = False
 
         Screen.update_starter_screen()
-        print(pygame.time.get_ticks())
 
         keys_pressed = pygame.key.get_pressed()
+        if (keys_pressed[pygame.K_1] or keys_pressed[pygame.K_2] or keys_pressed[pygame.K_3] or keys_pressed[pygame.K_4] or keys_pressed[pygame.K_5] or keys_pressed[pygame.K_6] or keys_pressed[pygame.K_7] or keys_pressed[pygame.K_8] or keys_pressed[pygame.K_9]):
+            check_if_save_or_open()
         if is_first:
             keys_pressed_last_turn = keys_pressed
             is_first = False
