@@ -20,3 +20,8 @@ def move_soldier(direction):
 
 def get_loc():
     return soldier_loc
+
+
+def set_loc(sol_loc):
+    global soldier_loc
+    soldier_loc = sol_loc

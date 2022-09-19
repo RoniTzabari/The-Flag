@@ -69,3 +69,14 @@ def if_free_for_portal(row, col):
 
 def get_portal_field():
     return portal_corner_field
+
+
+def set_portal_field(portals):
+    global portal_field, portal_corner_field
+    portal_corner_field = portals
+    for i in range(len(portal_corner_field)):
+        for j in range(len(portal_corner_field[i])):
+            if portal_corner_field[i][j] == Consts.PORTAL:
+                loc = (i, j)
+                for k in range(loc[1], loc[1] + Consts.PORTAL_WIDTH):
+                    portal_field[loc[0]][j] = Consts.PORTAL
