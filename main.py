@@ -37,7 +37,6 @@ def which_number_is_pressed(keys_pressed):
         pressed_num = pygame.K_9
     return pressed_num
 
-
 def check_if_save_or_open(pressed_num):
     ticks=pygame.time.get_ticks()
     keys_pressed = pygame.key.get_pressed()
