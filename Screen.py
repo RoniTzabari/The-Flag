@@ -47,6 +47,10 @@ def create_night_screen():
                 portal_data = pygame.transform.scale(Consts.PORTAL_IMG, (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
                 portal = pygame.Rect(index_to_pixels((j, i)), (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
                 render_portal(portal, portal_data)
+            if mine_fiels[i][j] == Consts.TELEPORT:
+                teleport_data = pygame.transform.scale(Consts.TELEPORT_IMG, (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
+                teleport = pygame.Rect(index_to_pixels((j, i)), (Consts.PORTAL_WIDTH_IMAGE, Consts.PORTAL_HEIGHT_IMAGE))
+                render_portal(teleport, teleport_data)
 
     player_data = pygame.transform.scale(Consts.PLAYER_NIGHT_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
@@ -65,6 +69,7 @@ def update_starter_screen():
 
     player_index = Solider.get_loc()
     field_layout = Field.get_head_field()
+    gard_index =
 
     # putting heads
     for i in range(Consts.FIELD_MATRIX_ROWS):
@@ -83,6 +88,10 @@ def update_starter_screen():
     player_data = pygame.transform.scale(Consts.PLAYER_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     WINDOW.blit(player_data, (player.x, player.y))
+
+    gard_data = pygame.transform.scale(Consts.GARD_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    gard = pygame.Rect(index_to_pixels(gard_index),(Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    WINDOW.blit(gard_data, (gard.x, gard.y))
 
     pygame.display.update()
 
