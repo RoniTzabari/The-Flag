@@ -29,6 +29,7 @@ def main():
                 is_run = False
 
         Screen.update_starter_screen()
+        print(pygame.time.get_ticks())
 
         keys_pressed = pygame.key.get_pressed()
         if is_first:
