@@ -38,7 +38,7 @@ def main():
                 if event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3 or event.key == pygame.K_4 or event.key == pygame.K_5 or event.key == pygame.K_6 or event.key == pygame.K_7 or event.key == pygame.K_8 or event.key == pygame.K_9:
                     press_duration = time.time() - start_time
                     if press_duration <= 1.0:
-                        print("save game in ", event.key - 49)
+                        Database.insert_game_state(event.key - 49)
                     else:
                         Database.change_game_state(event.key - 49)
 
