@@ -5,6 +5,7 @@ import Solider
 import Screen
 import Field
 import time
+import Database
 
 def is_win_or_lose():
     check = True
@@ -39,7 +40,7 @@ def main():
                     if press_duration <= 1.0:
                         print("save game in ", event.key - 49)
                     else:
-                        print("open game in ", event.key - 49)
+                        Database.change_game_state(event.key - 49)
 
         Screen.update_starter_screen()
 
