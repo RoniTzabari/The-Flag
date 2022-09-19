@@ -11,5 +11,3 @@ def change_game_state(index):
     MineField.set_portal_field(data.Portals[index])
     Solider.set_loc(data.Player[index])
 
-
-get_game_state(0)
