@@ -4,6 +4,7 @@ import Field
 import MineField
 import Solider
 import random
+import Guard
 
 WINDOW = Consts.WINDOW
 
@@ -69,7 +70,7 @@ def update_starter_screen():
 
     player_index = Solider.get_loc()
     field_layout = Field.get_head_field()
-    gard_index =
+    guard_index = Guard.get_guard_loc()
 
     # putting heads
     for i in range(Consts.FIELD_MATRIX_ROWS):
@@ -89,9 +90,9 @@ def update_starter_screen():
     player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     WINDOW.blit(player_data, (player.x, player.y))
 
-    gard_data = pygame.transform.scale(Consts.GARD_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
-    gard = pygame.Rect(index_to_pixels(gard_index),(Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
-    WINDOW.blit(gard_data, (gard.x, gard.y))
+    guard_data = pygame.transform.scale(Consts.GUARD_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    guard = pygame.Rect(index_to_pixels(guard_index),(Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    WINDOW.blit(guard_data, (guard.x, guard.y))
 
     pygame.display.update()
 

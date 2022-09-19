@@ -25,6 +25,8 @@ SHIP_WIDTH = 4
 SHIP_HEIGHT = 3
 SHIP_LOCATION = (46, 22)
 
+GUARD_Y = FIELD_MATRIX_ROWS // 2 - 2  # guard's top left corner
+
 SOLDIER_WIDTH = 2
 SOLDIER_HEIGHT = 4
 
@@ -50,7 +52,7 @@ BACKGROUND_IMG = pygame.image.load(os.path.join("Bin", "space.jpeg"))
 SHIP_IMAGE = pygame.image.load(os.path.join("Bin", "ship.png"))
 LOSE_IMAGE = pygame.image.load(os.path.join("Bin", "lose.png"))
 WIN_IMAGE = pygame.image.load(os.path.join("Bin", "win.jpg"))
-GARD_IMG = pygame.image.load(os.path.join("Bin", "picklerick.png"))
+GUARD_IMG = pygame.image.load(os.path.join("Bin", "picklerick.png"))
 TELEPORT_IMG = pygame.image.load(os.path.join("Bin", "portal2.png"))
 
 

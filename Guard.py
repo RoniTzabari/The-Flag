@@ -2,8 +2,7 @@ import Consts
 import Solider
 import time
 
-GUARD_Y = Consts.FIELD_MATRIX_ROWS // 2 - 2  # guard's top left corner
-guard_loc = [0, GUARD_Y]
+guard_loc = [0, Consts.GUARD_Y]
 guard_direction = Consts.STEP  # 1 = left, -1 = right
 started_time = None
 
