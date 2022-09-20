@@ -54,6 +54,7 @@ LOSE_IMAGE = pygame.image.load(os.path.join("Bin", "lose.png"))
 WIN_IMAGE = pygame.image.load(os.path.join("Bin", "win.jpg"))
 GUARD_IMG = pygame.image.load(os.path.join("Bin", "picklerick.png"))
 TELEPORT_IMG = pygame.image.load(os.path.join("Bin", "portal2.png"))
+GUARD_NIGHT_IMG = pygame.image.load(os.path.join("Bin", "nightpickle.png"))
 
 
 # SCREEN:

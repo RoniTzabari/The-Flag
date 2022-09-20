@@ -16,7 +16,7 @@ def move_guard():
         started_time = time.time()
     else:
         curr_time = time.time()
-        if curr_time - started_time >= 1.0:
+        if curr_time - started_time >= 0.5:
             if guard_loc[0] + guard_direction == Consts.FIELD_MATRIX_COLS:
                 guard_direction = -1
             elif guard_loc[0] + guard_direction == 0:
@@ -28,9 +28,10 @@ def move_guard():
 
 def is_caught():
     sol_loc = Solider.get_loc()
-    for i in range(guard_loc[1], guard_loc[1] + 3):
-        for j in range(guard_loc[0], guard_loc[0] + 2):
-            if [j, i] == sol_loc:
+
+    for i in range(sol_loc[1], sol_loc[1] + 4):
+        for j in range(sol_loc[0], sol_loc[0] + 1):
+            if (j >= guard_loc[0] - 1 and j <= guard_loc[0] + 1) and (i >= Consts.GUARD_Y and i <= Consts.GUARD_Y + 4):
                 print("Guard", guard_loc)
                 print("Player", Solider.get_loc())
                 return True

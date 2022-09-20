@@ -30,6 +30,7 @@ def create_night_screen():
     WINDOW.fill(Consts.BLACK)
 
     player_index = Solider.get_loc()
+    guard_index = Guard.get_guard_loc()
 
     # create vertical lines
     for i in range(1, Consts.FIELD_MATRIX_COLS):
@@ -56,6 +57,10 @@ def create_night_screen():
     player_data = pygame.transform.scale(Consts.PLAYER_NIGHT_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     player = pygame.Rect(index_to_pixels(player_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
     WINDOW.blit(player_data, (player.x, player.y))
+
+    guard_data = pygame.transform.scale(Consts.GUARD_NIGHT_IMG, (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    guard = pygame.Rect(index_to_pixels(guard_index), (Consts.PLAYER_WIDTH, Consts.PLAYER_HEIGHT))
+    WINDOW.blit(guard_data, (guard.x, guard.y))
 
     pygame.display.update()
     pygame.time.wait(1000)

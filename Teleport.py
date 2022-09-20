@@ -51,4 +51,3 @@ def if_on_teleport():
                             sol_loc = [j, i - 4]
                         count += 1
         Solider.set_loc(sol_loc)
-        print(sol_loc)

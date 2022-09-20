@@ -55,7 +55,6 @@ def generate_head_field():
 
 def if_on_ship():
     location = Solider.get_loc()
-    print(location)
     return field[location[1] + 1][location[0]] == Consts.SHIP
 
 
