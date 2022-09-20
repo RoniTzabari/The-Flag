@@ -1,6 +1,7 @@
 import Consts
 import Field
 import Solider
+import Teleport
 import random
 
 portal_field = []
@@ -25,6 +26,7 @@ def generate_portal_field():
     global portal_field, portal_corner_field
     portal_field = Field.new_field()
     portal_corner_field = Field.new_field()
+
     for i in range(Consts.NUM_OF_OBSTACLES):
         flag = False
         while not flag:
@@ -35,13 +37,23 @@ def generate_portal_field():
         for j in range(loc[1], loc[1] + Consts.PORTAL_WIDTH):
             portal_field[loc[0]][j] = Consts.PORTAL
 
+    for i in range(Consts.NUM_OF_TELEPORT):
+        flag = False
+        while not flag:
+            loc = get_loc_tup()
+            flag = Teleport.if_free_for_teleport(loc[0], loc[1], portal_field)
+
+        portal_corner_field[loc[0]][loc[1]] = Consts.TELEPORT
+        for j in range(loc[1], loc[1] + Consts.TELEPORT_WIDTH):
+            portal_field[loc[0]][j] = Consts.TELEPORT
+
 
 def get_loc_tup():
-    row = random.randint(0, Consts.FIELD_MATRIX_ROWS - 1)
-    if row < Consts.SOLDIER_HEIGHT:
-        col = random.randint(Consts.SOLDIER_WIDTH,
-                             Consts.FIELD_MATRIX_COLS - Consts.PORTAL_WIDTH)
-    elif row >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
+    row = random.randint(Consts.SOLDIER_HEIGHT - 1, Consts.FIELD_MATRIX_ROWS - 1)
+    # if row < Consts.SOLDIER_HEIGHT:
+    #     col = random.randint(Consts.SOLDIER_WIDTH,
+    #                          Consts.FIELD_MATRIX_COLS - Consts.PORTAL_WIDTH)
+    if row >= Consts.FIELD_MATRIX_ROWS - Consts.SHIP_HEIGHT - 1:
         col = random.randint(0,
                              Consts.FIELD_MATRIX_COLS - Consts.SHIP_WIDTH
                              - Consts.PORTAL_WIDTH)
@@ -69,6 +81,10 @@ def if_free_for_portal(row, col):
 
 def get_portal_field():
     return portal_corner_field
+
+
+def get_full_portal_field():
+    return portal_field
 
 
 def set_portal_field(portals):

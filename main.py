@@ -6,6 +6,7 @@ import Solider
 import Screen
 import Field
 import time
+import Teleport
 import Database
 
 
@@ -54,7 +55,7 @@ def main():
         keys_pressed_last_turn = keys_pressed
 
         Guard.move_guard()
-
+        Teleport.if_on_teleport()
         is_run = is_win_or_lose()
 
     pygame.time.wait(3000)
